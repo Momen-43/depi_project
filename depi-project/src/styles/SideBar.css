@@ -1,0 +1,25 @@
+.sidebar {
+    width: 20%;
+    min-height: 90.3vh;
+    border-right: 1px solid #BEBEBE;
+}
+
+.sidebar ul {
+    padding: 0;
+}
+
+.sidebar-label {
+    color: #515151;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.sidebar-icon {
+    color: #1C274C;
+}
+
+.side-active {
+    background-color: #F2F3FF;
+    border-right: 6px solid #5F6FFF;
+}

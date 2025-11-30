@@ -1,0 +1,57 @@
+.add-doctor-container {
+    background-color: #F8F9FD;
+    width: 80%;
+}
+
+.add-doctor-form {
+    width: 70%;
+    min-height: 900px;
+    background-color: white;
+    border: 1px solid #6c6c6c5e;
+    border-radius: 6px;
+}
+
+.upload-image {
+  margin: 32px 0 0 32px;
+}
+
+.upload-area:hover {
+    cursor: pointer;
+}
+
+.preview-img {
+  width: 98px;
+  height: 98px;
+  margin: 32px 0 0 32px;
+  object-fit: cover;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.input-pair {
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+    color: #5D607D;
+    font-size: 18px;
+}
+
+.input-pair input, .input-pair select, .input-pair textarea {
+    color: #A2A2A2;
+    border: 1px solid #A2A2A2;
+    border-radius: 4px;
+}
+
+.input-pair select:hover {
+    cursor: pointer;
+}
+
+.input-pair input::placeholder, .input-pair option, .input-pair textarea::placeholder {
+    color: #A2A2A2;
+}
+
+.input-pair input:focus, .input-pair select:focus, .input-pair textarea:focus {
+    outline: none;
+    border: 1px solid #A2A2A2;
+    color: #A2A2A2;
+}
