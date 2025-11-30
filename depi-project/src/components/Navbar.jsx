@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom"; // 1. استيراد useLocation
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "../styles/Navbar.css";
 import { Container, Button, Navbar, Nav } from "react-bootstrap";
@@ -21,15 +21,13 @@ const AppNavbar = () => {
     }
   };
 
-  // 2. الحصول على المسار الحالي من الرابط
   const location = useLocation();
 
-  // 3. دالة مساعدة لتحديد الكلاسات بناءً على المسار
-  // إذا كان الرابط هو نفس المسار الحالي، نعطيه تنسيق "النشط"، وإلا نعطيه تنسيق "عادي"
+
   const getNavLinkClass = (path) => {
     return location.pathname === path
-      ? "text-primary border-bottom border-primary border-2 fw-bold" // Active Style
-      : "text-secondary fw-bold"; // Inactive Style
+      ? "text-primary border-bottom border-primary border-2 fw-bold"
+      : "text-secondary fw-bold";
   };
 
   return (
@@ -42,11 +40,10 @@ const AppNavbar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mx-auto text-uppercase gap-3">
             {" "}
-            {/* أضفت gap-3 لمسافة بين الروابط */}
             <Nav.Link
               as={Link}
               to="/"
-              className={getNavLinkClass("/")} // استخدام الدالة هنا
+              className={getNavLinkClass("/")}
             >
               HOME
             </Nav.Link>
@@ -82,9 +79,7 @@ const AppNavbar = () => {
 
           {currentUser ? (
             <div className="d-flex align-items-center gap-2">
-              {/* <span className="fw-bold">
-                Welcome, {currentUser.displayName}
-              </span> */}
+
               <button onClick={handleLogout} className="logout-button">
                 Logout
               </button>
