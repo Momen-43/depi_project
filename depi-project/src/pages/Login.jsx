@@ -30,9 +30,19 @@ const Login = () => {
 
     try {
       setLoading(true);
-      await login(formData.email, formData.password);
-      toast.success('Logged in successfully! 👋');
-      navigate('/');
+      
+      // ✅ Login returns user data with role
+      const result = await login(formData.email, formData.password);
+      
+      // ✅ Check role and redirect accordingly
+      if (result.role === 'admin') {
+        toast.success('Welcome back, Admin! 🛡️');
+        navigate('/admin/dashboard');
+      } else {
+        toast.success('Logged in successfully! 👋');
+        navigate('/');
+      }
+      
     } catch (error) {
       console.error('Login error:', error);
       
@@ -98,7 +108,14 @@ const Login = () => {
           </div>
 
           <button type="submit" className="auth-button" disabled={loading}>
-            {loading ? 'Logging in...' : 'Login'}
+            {loading ? (
+              <>
+                <span className="spinner-border spinner-border-sm me-2" role="status"></span>
+                Logging in...
+              </>
+            ) : (
+              'Login'
+            )}
           </button>
         </form>
 
