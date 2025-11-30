@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom"; // 1. استيراد useLocation
+import { Link, useLocation, useNavigate } from "react-router-dom"; // 1. استيراد useLocation
 import { useAuth } from "../context/AuthContext";
 import "../styles/Navbar.css";
 import { Container, Button, Navbar, Nav } from "react-bootstrap";
@@ -8,7 +8,18 @@ import logoPrescripto from "../assets/images/logo-prescripto.svg";
 const primaryColor = "#5f6fff";
 
 const AppNavbar = () => {
-  const { currentUser } = useAuth();
+  const { currentUser, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      toast.success("Logged out successfully!");
+      navigate("/login");
+    } catch (error) {
+      toast.error("Error logging out");
+    }
+  };
 
   // 2. الحصول على المسار الحالي من الرابط
   const location = useLocation();
@@ -71,9 +82,12 @@ const AppNavbar = () => {
 
           {currentUser ? (
             <div className="d-flex align-items-center gap-2">
-              <span className="fw-bold">
+              {/* <span className="fw-bold">
                 Welcome, {currentUser.displayName}
-              </span>
+              </span> */}
+              <button onClick={handleLogout} className="logout-button">
+                Logout
+              </button>
             </div>
           ) : (
             <Button

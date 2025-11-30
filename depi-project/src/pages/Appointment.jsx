@@ -92,7 +92,7 @@ export const Appointment = () => {
             src={docImage}
             alt="Doctor"
             className="img-fluid rounded-top"
-            style={{ marginBottom: "-10px" }}
+            // style={{ marginBottom: "-10px" }}
           />
         </div>
 
@@ -180,12 +180,11 @@ export const Appointment = () => {
         <Button
           className="rounded-pill px-5 py-3 fw-bold border-0"
           style={{ backgroundColor: primaryColor }}
-          disabled={!selectedTime} 
+          disabled={!selectedTime}
         >
           Book an appointment
         </Button>
       </div>
-
 
       <div className="mt-5 pt-4">
         <h2 className="text-center fw-bold mb-3">Related Doctors</h2>
