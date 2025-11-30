@@ -6,7 +6,10 @@ import Navbar from "./components/Navbar";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import ForgotPassword from "./pages/ForgetPassword";
+import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./pages/Home";
+import Footer from "./pages/Footer";
+import Appointment from "./pages/Appointment";
 
 function App() {
   return (
@@ -47,11 +50,20 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/appointments"
+            element={
+              <ProtectedRoute>
+                <Appointment />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
+        <Footer />
       </AuthProvider>
     </BrowserRouter>
   );
