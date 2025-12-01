@@ -41,6 +41,7 @@ const AppNavbar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mx-auto text-uppercase gap-3">
+            {" "}
             <Nav.Link as={Link} to="/" className={getNavLinkClass("/")}>
               HOME
             </Nav.Link>
@@ -72,7 +73,6 @@ const AppNavbar = () => {
             >
               CONTACT
             </Nav.Link>
-
             {/* ============ ADMIN DROPDOWN MENU ============ */}
             {currentUser && userRole === "admin" && (
               <NavDropdown
