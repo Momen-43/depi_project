@@ -41,6 +41,7 @@ const AppNavbar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mx-auto text-uppercase gap-3">
+            {" "}
             <Nav.Link
               as={Link}
               to="/"
@@ -118,6 +119,7 @@ const AppNavbar = () => {
                 )}
               </div>
               
+
               <button onClick={handleLogout} className="logout-button">
                 Logout
               </button>
