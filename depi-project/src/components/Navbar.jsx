@@ -29,9 +29,6 @@ const AppNavbar = () => {
       : "text-secondary fw-bold";
   };
 
-  // Check if current path starts with /admin
-  const isAdminPath = location.pathname.startsWith("/admin");
-
   return (
     <Navbar bg="white" expand="lg" className="border-bottom py-3">
       <Container>
@@ -76,32 +73,22 @@ const AppNavbar = () => {
             {/* ============ ADMIN DROPDOWN MENU ============ */}
             {currentUser && userRole === "admin" && (
               <NavDropdown
-                title={
-                  <span
-                    className={
-                      isAdminPath
-                        ? "text-danger fw-bold"
-                        : "text-secondary fw-bold"
-                    }
-                  >
-                    🛡️ ADMIN
-                  </span>
-                }
+                title={<span className="fw-bold">ADMIN</span>}
                 id="admin-nav-dropdown"
                 className="admin-dropdown"
               >
                 <NavDropdown.Item as={Link} to="/admin/dashboard">
-                  📊 Dashboard
+                  Dashboard
                 </NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/admin/users">
-                  👥 Manage Users
+                  Manage Users
                 </NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/admin/appointments">
-                  📅 Manage Appointments
+                  Manage Appointments
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item as={Link} to="/admin/settings">
-                  ⚙️ Settings
+                  Normal View
                 </NavDropdown.Item>
               </NavDropdown>
             )}
@@ -116,7 +103,7 @@ const AppNavbar = () => {
                   {currentUser.displayName || currentUser.email?.split("@")[0]}
                 </span>
                 {userRole === "admin" && (
-                  <span className="badge bg-danger">Admin</span>
+                  <span className="badge card-style">Admin</span>
                 )}
               </div>
 

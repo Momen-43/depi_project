@@ -1,0 +1,13 @@
+.card-style {
+    background-color: #5F6EFF;
+    color: white;
+}
+
+.button-style {
+    outline: 1px solid #5F6EFF;
+}
+
+.button-style:hover {
+    background-color: #5F6EFF;
+    color: white;
+}
