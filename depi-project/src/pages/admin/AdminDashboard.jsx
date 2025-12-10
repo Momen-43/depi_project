@@ -130,9 +130,9 @@ function AdminDashboard() {
             <div className="card-footer bg-transparent border-0">
               <button
                 className="btn btn-light btn-sm w-100"
-                onClick={() => navigate("/admin/appointments")}
+                onClick={() => navigate("/admin/addnewdoctor")}
               >
-                Review Pending →
+                Add New Doctor →
               </button>
             </div>
           </div>

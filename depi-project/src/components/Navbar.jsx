@@ -86,6 +86,9 @@ const AppNavbar = () => {
                 <NavDropdown.Item as={Link} to="/admin/appointments">
                   Manage Appointments
                 </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/admin/addnewdoctor">
+                  Add New Doctor
+                </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item as={Link} to="/admin/settings">
                   Normal View

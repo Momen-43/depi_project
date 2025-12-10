@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
-import { collection, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore';
-import { db } from '../../firebase/config';
-import { useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
+import { useState, useEffect } from "react";
+import { collection, getDocs, doc, updateDoc } from "firebase/firestore";
+import { db } from "../../firebase/config";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const ManageUsers = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,16 +16,16 @@ const ManageUsers = () => {
 
   const fetchUsers = async () => {
     try {
-      const usersCollection = collection(db, 'users');
+      const usersCollection = collection(db, "users");
       const usersSnapshot = await getDocs(usersCollection);
-      const usersList = usersSnapshot.docs.map(doc => ({
+      const usersList = usersSnapshot.docs.map((doc) => ({
         id: doc.id,
-        ...doc.data()
+        ...doc.data(),
       }));
       setUsers(usersList);
     } catch (error) {
-      console.error('Error fetching users:', error);
-      toast.error('Error fetching users');
+      console.error("Error fetching users:", error);
+      toast.error("Error fetching users");
     } finally {
       setLoading(false);
     }
@@ -33,36 +33,26 @@ const ManageUsers = () => {
 
   const updateUserRole = async (userId, newRole) => {
     try {
-      const userRef = doc(db, 'users', userId);
+      const userRef = doc(db, "users", userId);
       await updateDoc(userRef, { role: newRole });
-      
-      setUsers(users.map(user => 
-        user.id === userId ? { ...user, role: newRole } : user
-      ));
-      
+
+      setUsers(
+        users.map((user) =>
+          user.id === userId ? { ...user, role: newRole } : user
+        )
+      );
+
       toast.success(`User role updated to ${newRole}`);
     } catch (error) {
-      console.error('Error updating user role:', error);
-      toast.error('Error updating user role');
+      console.error("Error updating user role:", error);
+      toast.error("Error updating user role");
     }
   };
 
-  const deleteUser = async (userId, userEmail) => {
-    if (window.confirm(`Are you sure you want to delete user: ${userEmail}?`)) {
-      try {
-        await deleteDoc(doc(db, 'users', userId));
-        setUsers(users.filter(user => user.id !== userId));
-        toast.success('User deleted successfully');
-      } catch (error) {
-        console.error('Error deleting user:', error);
-        toast.error('Error deleting user');
-      }
-    }
-  };
-
-  const filteredUsers = users.filter(user => 
-    user.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    user.displayName?.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredUsers = users.filter(
+    (user) =>
+      user.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.displayName?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   if (loading) {
@@ -80,17 +70,15 @@ const ManageUsers = () => {
       {/* Header */}
       <div className="d-flex justify-content-between align-items-center mb-4">
         <div>
-          <button 
+          <button
             className="btn btn-outline-secondary me-3"
-            onClick={() => navigate('/admin/dashboard')}
+            onClick={() => navigate("/admin/dashboard")}
           >
             ← Back
           </button>
-          <span className="h3">👥 Manage Users</span>
+          <span className="h3">Manage Users</span>
         </div>
-        <div className="text-muted">
-          Total: {users.length} users
-        </div>
+        <div className="text-muted">Total: {users.length} users</div>
       </div>
 
       {/* Search */}
@@ -99,7 +87,7 @@ const ManageUsers = () => {
           <input
             type="text"
             className="form-control"
-            placeholder="🔍 Search by name or email..."
+            placeholder="Search by name or email..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -116,7 +104,6 @@ const ManageUsers = () => {
                 <th>Email</th>
                 <th>Role</th>
                 <th>Created</th>
-                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -127,19 +114,25 @@ const ManageUsers = () => {
                   </td>
                 </tr>
               ) : (
-                filteredUsers.map(user => (
+                filteredUsers.map((user) => (
                   <tr key={user.id}>
                     <td>
                       <div className="d-flex align-items-center">
-                        <div 
+                        <div
                           className="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center me-2"
-                          style={{ width: '40px', height: '40px' }}
+                          style={{ width: "40px", height: "40px" }}
                         >
-                          {(user.displayName || user.email || '?')[0].toUpperCase()}
+                          {(user.displayName ||
+                            user.email ||
+                            "?")[0].toUpperCase()}
                         </div>
                         <div>
-                          <div className="fw-bold">{user.displayName || 'N/A'}</div>
-                          <small className="text-muted">{user.id.slice(0, 8)}...</small>
+                          <div className="fw-bold">
+                            {user.displayName || "N/A"}
+                          </div>
+                          <small className="text-muted">
+                            {user.id.slice(0, 8)}...
+                          </small>
                         </div>
                       </div>
                     </td>
@@ -147,29 +140,22 @@ const ManageUsers = () => {
                     <td>
                       <select
                         className={`form-select form-select-sm ${
-                          user.role === 'admin' ? 'bg-danger text-white' : ''
+                          user.role === "admin" ? "bg-primary text-white" : ""
                         }`}
-                        value={user.role || 'user'}
-                        onChange={(e) => updateUserRole(user.id, e.target.value)}
-                        style={{ width: '100px' }}
+                        value={user.role || "user"}
+                        onChange={(e) =>
+                          updateUserRole(user.id, e.target.value)
+                        }
+                        style={{ width: "100px" }}
                       >
                         <option value="user">User</option>
                         <option value="admin">Admin</option>
                       </select>
                     </td>
                     <td>
-                      {user.createdAt 
+                      {user.createdAt
                         ? new Date(user.createdAt).toLocaleDateString()
-                        : 'N/A'
-                      }
-                    </td>
-                    <td>
-                      <button 
-                        className="btn btn-outline-danger btn-sm"
-                        onClick={() => deleteUser(user.id, user.email)}
-                      >
-                        🗑️ Delete
-                      </button>
+                        : "N/A"}
                     </td>
                   </tr>
                 ))

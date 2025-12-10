@@ -61,8 +61,7 @@ function AddDoctorForm() {
 
   return (
     <div className="add-doctor-container">
-      <h5 className="m-4 p-2 ps-4">Add Doctor</h5>
-      <div className="add-doctor-form m-4 ms-5">
+      <div className="add-doctor-form">
         <label htmlFor="image">
           <div className="d-flex gap-4 mb-4">
             <img
@@ -181,7 +180,7 @@ function AddDoctorForm() {
               rows={5}
             ></textarea>
           </div>
-          <button className="button py-3 px-5" style={{ margin: "30px" }}>
+          <button className="auth-button py-3 px-5" style={{ margin: "30px" }}>
             Add doctor
           </button>
         </form>

@@ -19,6 +19,7 @@ import ManageAppointments from "./pages/admin/ManageAppointments";
 import DoctorPage from "./pages/DoctorPage";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import AddNewDoctor from "./pages/admin/AddNewDoctor";
 const ITEMS_PER_PAGE = 8;
 
 const specialtiesData = [
@@ -247,8 +248,16 @@ function App() {
               </AdminRoute>
             }
           />
+          <Route
+            path="/admin/addnewdoctor"
+            element={
+              <AdminRoute>
+                <AddNewDoctor />
+              </AdminRoute>
+            }
+          />
 
-           <Route
+          <Route
             path="/doctors"
             element={
               <DoctorPage
@@ -259,15 +268,9 @@ function App() {
             }
           />
 
-          <Route
-            path="/about"
-            element={<About/>}
-          />
+          <Route path="/about" element={<About />} />
 
-          <Route
-            path="/contact"
-            element={<Contact/>}
-          />
+          <Route path="/contact" element={<Contact />} />
           {/* ============ CATCH ALL ============ */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
