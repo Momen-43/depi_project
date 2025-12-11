@@ -3,7 +3,6 @@ import { Container, Row, Col } from "react-bootstrap";
 import logoFooter from "../assets/images/logo-footer.svg";
 
 export const Footer = () => {
-  // الخطأ كان هنا، يجب إضافة return
   return (
     <footer className="bg-white py-5 mt-5 border-top">
       <Container>
