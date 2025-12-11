@@ -67,7 +67,6 @@ const ManageUsers = () => {
 
   return (
     <div className="container py-4">
-      {/* Header */}
       <div className="d-flex justify-content-between align-items-center mb-4">
         <div>
           <button
@@ -81,7 +80,6 @@ const ManageUsers = () => {
         <div className="text-muted">Total: {users.length} users</div>
       </div>
 
-      {/* Search */}
       <div className="card mb-4">
         <div className="card-body">
           <input
@@ -94,7 +92,6 @@ const ManageUsers = () => {
         </div>
       </div>
 
-      {/* Users Table */}
       <div className="card">
         <div className="table-responsive">
           <table className="table table-hover mb-0">

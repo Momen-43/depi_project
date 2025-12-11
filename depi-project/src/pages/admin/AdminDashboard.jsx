@@ -4,6 +4,7 @@ import { useAuth } from "../../context/AuthContext";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import "../../styles/AdminDashboard.css";
+import axios from "axios";
 
 function AdminDashboard() {
   const { currentUser } = useAuth();
@@ -11,12 +12,25 @@ function AdminDashboard() {
   const [stats, setStats] = useState({
     totalUsers: 0,
     totalAppointments: 0,
-    pendingAppointments: 0,
+    totalDoctors: 0,
   });
   const [loading, setLoading] = useState(true);
+  const [doctors, setDoctors] = useState([]);
 
   useEffect(() => {
     fetchStats();
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/doctors")
+      .then((res) => {
+        console.log("test axios", res.data);
+        setDoctors(res.data);
+      })
+      .catch((err) => {
+        console.log("error axios", err);
+      });
   }, []);
 
   const fetchStats = async () => {
@@ -25,20 +39,20 @@ function AdminDashboard() {
       const totalUsers = usersSnapshot.size;
 
       let totalAppointments = 0;
-      let pendingAppointments = 0;
+      let totalDoctors = 0;
 
-      const appointmentsSnapshot = await getDocs(
-        collection(db, "appointments")
-      );
-      totalAppointments = appointmentsSnapshot.size;
-      pendingAppointments = appointmentsSnapshot.docs.filter(
-        (doc) => doc.data().status === "pending"
-      ).length;
+      // const appointmentsSnapshot = await getDocs(
+      //   collection(db, "appointments")
+      // );
+      // totalAppointments = appointmentsSnapshot.size;
+      // totalDoctors = appointmentsSnapshot.docs.filter(
+      //   (doc) => doc.data().status === "doctor"
+      // ).length;
 
       setStats({
         totalUsers,
         totalAppointments,
-        pendingAppointments,
+        totalDoctors,
       });
     } catch (error) {
       console.error("Error fetching stats:", error);
@@ -59,7 +73,6 @@ function AdminDashboard() {
 
   return (
     <div className="container py-4">
-      {/* Header */}
       <div className="row mb-4">
         <div className="col">
           <div className="d-flex justify-content-between align-items-center">
@@ -73,7 +86,6 @@ function AdminDashboard() {
         </div>
       </div>
 
-      {/* Stats Cards */}
       <div className="row mb-4">
         <div className="col-md-4 mb-3">
           <div className="card h-100 card-style">
@@ -122,8 +134,8 @@ function AdminDashboard() {
             <div className="card-body">
               <div className="d-flex justify-content-between align-items-center">
                 <div>
-                  <h6 className="text-uppercase mb-1">Pending</h6>
-                  <h2 className="mb-0">{stats.pendingAppointments}</h2>
+                  <h6 className="text-uppercase mb-1">Doctors</h6>
+                  <h2 className="mb-0">{doctors.length}</h2>
                 </div>
               </div>
             </div>
@@ -139,7 +151,6 @@ function AdminDashboard() {
         </div>
       </div>
 
-      {/* Quick Actions */}
       <div className="row">
         <div className="col-12">
           <div className="card">

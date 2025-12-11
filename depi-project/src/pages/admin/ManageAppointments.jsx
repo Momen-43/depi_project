@@ -48,7 +48,6 @@ const ManageAppointments = () => {
 
   return (
     <div className="container py-4">
-      {/* Header */}
       <div className="d-flex justify-content-between align-items-center mb-4">
         <div>
           <button
@@ -60,7 +59,6 @@ const ManageAppointments = () => {
           <span className="h3">Manage Appointments</span>
         </div>
       </div>
-      {/* Appointments List */}
       <div className="row">
         {filteredAppointments.length === 0 ? (
           <div className="col-12">

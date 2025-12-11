@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import "../styles/AddDoctorForm.css";
 import upload_image from "../assets/images/upload_area.svg";
 import InputField from "./InputField";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function AddDoctorForm() {
+  const navigate = useNavigate();
+
   const [preview, setPreview] = React.useState(null);
 
   const specialities = [
@@ -27,6 +31,11 @@ function AddDoctorForm() {
     salary: "",
     info: "",
   });
+
+  function handleAddDoctor() {
+    axios.post("http://localhost:5000/doctors", form);
+    navigate("/admin/dashboard");
+  }
 
   function handleImageChange(event) {
     const file = event.target.files[0];
@@ -180,7 +189,11 @@ function AddDoctorForm() {
               rows={5}
             ></textarea>
           </div>
-          <button className="auth-button py-3 px-5" style={{ margin: "30px" }}>
+          <button
+            onClick={handleAddDoctor}
+            className="auth-button py-3 px-5"
+            style={{ margin: "30px" }}
+          >
             Add doctor
           </button>
         </form>

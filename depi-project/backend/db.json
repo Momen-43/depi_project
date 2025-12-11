@@ -1,0 +1,69 @@
+{
+  "doctors": [
+    {
+      "id": "1",
+      "image": "",
+      "doctorName": "",
+      "speciality": "General physician",
+      "doctorEmail": "",
+      "education": "",
+      "doctorPassword": "",
+      "address": "",
+      "experience": "",
+      "salary": "",
+      "info": ""
+    },
+    {
+      "id": "2",
+      "image": "",
+      "doctorName": "",
+      "speciality": "General physician",
+      "doctorEmail": "",
+      "education": "",
+      "doctorPassword": "",
+      "address": "",
+      "experience": "",
+      "salary": "",
+      "info": ""
+    },
+    {
+      "id": "3",
+      "image": "",
+      "doctorName": "",
+      "speciality": "General physician",
+      "doctorEmail": "",
+      "education": "",
+      "doctorPassword": "",
+      "address": "",
+      "experience": "",
+      "salary": "",
+      "info": ""
+    },
+    {
+      "id": "81c5",
+      "image": {},
+      "doctorName": "yousef",
+      "speciality": "Pediatricians",
+      "doctorEmail": "yousef@gmail.com",
+      "education": "harvard",
+      "doctorPassword": "edsagedf",
+      "address": "faraskour",
+      "experience": "8 years",
+      "salary": "1000",
+      "info": "vlelfbheakfh"
+    },
+    {
+      "id": "ba4c",
+      "image": {},
+      "doctorName": "yousef",
+      "speciality": "Gynecologist",
+      "doctorEmail": "yousef@gmail.com",
+      "education": "harvard",
+      "doctorPassword": "dawfawdaw",
+      "address": "faraskour",
+      "experience": "8 years",
+      "salary": "1300",
+      "info": "awsfawsdfwaed"
+    }
+  ]
+}
