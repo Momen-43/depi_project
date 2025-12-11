@@ -62,12 +62,37 @@ const ManageAppointments = () => {
       <div className="row">
         {filteredAppointments.length === 0 ? (
           <div className="col-12">
-            <div className="alert alert-info text-center">
-              No appointments found
-            </div>
+            <p className="text-center text-muted">No appointments found</p>
           </div>
         ) : (
-          ""
+          filteredAppointments.map((appointment) => (
+            <div key={appointment.id} className="col-md-6 col-lg-4 mb-3">
+              <div className="card h-100">
+                <div className="card-header d-flex justify-content-between align-items-center">
+                  <span className={`badge bg-${appointment.status}`}>
+                    {appointment.status || "pending"}
+                  </span>
+                  <small className="text-muted">
+                    {appointment.date || "No date"}
+                  </small>
+                </div>
+                <div className="card-body">
+                  <h5 className="card-title">
+                    {appointment.patientName || "N/A"}
+                  </h5>
+                  <p className="card-text">
+                    <strong>Email:</strong> {appointment.email || "N/A"}
+                    <br />
+                    <strong>Phone:</strong> {appointment.phone || "N/A"}
+                    <br />
+                    <strong>Time:</strong> {appointment.time || "N/A"}
+                    <br />
+                    <strong>Reason:</strong> {appointment.reason || "N/A"}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))
         )}
       </div>
     </div>
